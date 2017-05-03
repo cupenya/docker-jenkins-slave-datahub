@@ -27,14 +27,13 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
 
-FROM cupenya/docker-jenkins-slave-ivy2-cache
+FROM cupenya/docker-jenkins-default-slave
 MAINTAINER Elmar Weber <elmar(.)weber(@)cupenya(.)com>
 
 RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
     echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \
     sudo apt-get update && sudo apt-get install -y google-cloud-sdk
-
 
 
 # restore user for jenkins slave
